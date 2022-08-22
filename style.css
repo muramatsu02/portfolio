@@ -1,0 +1,1061 @@
+@charset "utf-8";
+
+/* フォント呼び出し */
+@font-face {
+    font-family: 'dosis';
+    src: url('../fonts/Dosis-Light.ttf') format('truetype');
+}
+
+/* 基本設定: ページ全体 */
+body {
+    margin: 0 auto;
+    font-family: 'Noto Sans JP', sans-serif;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: rgb(71, 71, 71);
+}
+div, p, h1, h2, h3, ul, li, img{
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+/* （緩やかにスクロールさせる） */
+html{
+    scroll-behavior: smooth;
+}
+
+
+
+
+/* ===============  header ============== */
+
+header {
+    font-family: 'dosis', sans-serif;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(245, 245, 245, 0.85);
+}
+/* （トップページのみヘッダー、アコーディオンを白色に） */
+.toppage-header {
+    background-color: rgba(255, 255, 255, 0.85);
+}
+.header-inner {
+    max-width: 1500px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.header-right {
+    font-size: 20px;
+}
+.pc-nav {
+    display: none;
+}
+
+/*　ハンバーガーボタン　*/
+.hamburger {
+    display : block;
+    position: fixed;
+    z-index : 4;
+    right : 19px;
+    top   : 9px;
+    width : 42px;
+    height: 42px;
+    cursor: pointer;
+    text-align: center;
+}
+.hamburger:hover {
+    opacity: 0.7;
+}
+.hamburger span {
+    display : block;
+    position: absolute;
+    width   : 30px;
+    height  : 2px ;
+    left    : 6px;
+    background : black;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition   : 0.3s ease-in-out;
+    transition        : 0.3s ease-in-out;
+}
+.hamburger span:nth-child(1) {
+    top: 10px;
+}
+.hamburger span:nth-child(2) {
+    top: 20px;
+}
+.hamburger span:nth-child(3) {
+    top: 30px;
+}
+  
+/* ナビ開いてる時のボタン */
+.hamburger.active {
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition     : all 0.3s ease-in-out;
+    transition        : all 0.3s ease-in-out;
+    -webkit-transition-delay: 0.6s;
+    -o-transition-delay     : 0.6s;
+    transition-delay        : 0.6s;
+    -webkit-transform: rotate(45deg);
+    -ms-transform    : rotate(45deg);
+    -o-transform     : rotate(45deg);
+    transform        : rotate(45deg);
+}
+.hamburger.active span:nth-child(2){
+    width: 0px;
+}
+.hamburger.active span:nth-child(1),
+.hamburger.active span:nth-child(3){
+    background :black;
+    -webkit-transition-delay: 0.3s;
+    -o-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+.hamburger.active span:nth-child(1){
+    -webkit-transform: translateY(4px);
+    -ms-transform    : translateY(4px);
+    -o-transform     : translateY(4px);
+    transform        : translateY(4px);
+}
+  
+.hamburger.active span:nth-child(3){
+    -webkit-transform: translateY(-16px) rotate(90deg);
+    -ms-transform: translateY(-16px) rotate(90deg);
+    -o-transform : translateY(-16px) rotate(90deg);
+    transform    : translateY(-16px) rotate(90deg);
+}
+nav.header-nav01 {
+    position: fixed;
+    z-index : 3;
+    top  : 0;
+    left : 0;
+    color: black;
+    background: rgba(255, 255, 250, 0.99);
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s ease, visibility .6s ease;
+}
+nav.header-nav01 ul {
+    margin: 5em auto 0;
+    padding: 0;
+    width: 100%;
+}
+nav.header-nav01 ul li {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    transition: .4s all;
+}
+nav.header-nav01 ul li:last-child {
+    padding-bottom: 0;
+}
+nav.header-nav01 ul li a {
+    display: block;
+    color: black;
+    padding: 1em 0;
+    text-decoration :none;
+}
+nav.header-nav01 ul a:hover{
+    opacity: 0.7;
+}
+
+/* このクラスを、jQueryで付与・削除する */
+nav.header-nav01.active {
+    opacity: 100;
+    pointer-events:all;
+}
+
+/* ----- (min-width: 900px) ------ */
+
+@media (min-width:900px) {
+    header {
+        height: 75px;
+    }
+    .sp-nav {
+        display: none;
+    }
+    .pc-nav {
+        display: block;
+    }
+    .header-nav02 ul {
+        display: flex;
+        margin-right: 3em;
+    }
+    .header-nav02 .nav-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 75px;
+        color: black;
+        letter-spacing: 0.1em;
+    }
+    .header-nav02 .nav-item:hover {
+        background-color: rgba(206, 207, 221, 0.3);
+    }
+}
+
+/* ----- /(min-width: 900px) ------ */
+
+
+
+/*　アコーディオンメニュー （※PCのみ）　*/ 
+
+/* ----- (min-width: 900px) ------ */
+
+@media (min-width:900px) {
+
+    .has-sub{
+        position: relative;
+    }
+    .sub {
+        display: none;
+        position: absolute;
+        z-index: 3;
+        left: -3.5em;
+        top: 75px;
+        background-color: rgba(245, 245, 245, 0.85);
+    }
+    /* （トップページのみヘッダー、アコーディオンを白色に） */
+    .toppage-sub {
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+    .sub div {
+        width: 250px;
+        letter-spacing: 0.1em;
+    }
+    .sub p {
+        padding: 0.5em 0em 0.5em 2em;
+        font-size: 19px;
+    }
+    .sub a {
+        display: block;
+        padding: 1em 0 1em 3em;
+        font-size: 15px;
+        color: inherit;
+    }
+    .sub a:hover {
+        background-color: rgba(206, 207, 221, 0.3);
+    }
+}
+
+/* ===============  /header ============= */
+
+
+
+
+/* ===============  top ============== */
+
+.top {
+    position: relative;
+    display: flex;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+.t-right {
+    width: 100%;
+    right: 0;
+}
+.t-right img {
+    width: 100%;
+    height: 450px;
+    object-fit:cover;
+    object-position: bottom 60% right 0;
+}
+.t-left {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 3%;
+}
+.t-left .site-title {
+    font-size: 60px;
+    font-family: 'dosis', sans-serif;
+    font-weight: lighter;
+    line-height: 0.8em;
+    letter-spacing: 0.06em;
+    text-align: center;
+    word-break:keep-all;
+}
+.site-title .title01 {
+    padding: 0 0.3em 0.04em 0.3em;
+    background: linear-gradient(transparent 77%, #FFFC99 77% 88%, transparent 0%);
+    background: -webkit-linear-gradient(transparent 77%, #FFFC99 77% 88%, transparent 0%);
+}
+.site-title .title02 {
+    font-size: 20px;
+}
+
+
+/* ----- (min-width: 900px) ------ */
+
+@media (min-width:900px) {
+    .t-right {
+        width: 100%;
+    }
+    .t-right img {
+       height: 600px;
+    }
+    .t-left {
+        top: 55%;
+        left: 6%;
+    }
+    .t-left .site-title {
+        font-size: 75px;
+        line-height: 0.6em;
+        letter-spacing: 0.08em;
+    }
+    .site-title .title02 {
+        font-size: 25px;
+    }
+}
+
+/* ----- /(min-width: 900px) ------ */
+
+/* ----- (min-width: 1100px) ------ */
+
+@media (min-width:1100px) {
+    .t-right img {
+        height: 700px;
+     }
+    .t-left {
+        top: 55%;
+        left: 6%;
+    }
+    .t-left .site-title {
+        font-size: 80px;
+        line-height: 0.7em;
+        letter-spacing: 0.09em;
+    }
+    .site-title .title02 {
+        font-size: 28px;
+    }
+}
+
+/* ===============  /top ============== */
+
+
+
+
+/* ===============  main ============= */
+
+main {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+
+/* ----------セクションの全体設定 */
+/* 各セクションの余白 */
+section {
+    margin: 5em 0;
+}
+
+/* 各セクションのタイトル設定 */
+
+.section-title {
+    position: relative;
+    font-family: 'dosis', sans-serif;
+    font-size: 43px;
+    font-weight: lighter;
+    color: black;
+    line-height: 0.8;
+    letter-spacing: 0.05em;
+}
+.section-title .sub-title {
+    font-family:  'Noto Sans JP', sans-serif;
+    font-size: 17px;
+}
+.section-title:after {
+    content: "";
+    position: absolute;
+    left: 3em;
+    top: 0.4em;
+    width: 4em;
+    border-bottom: 1px solid #000000;
+}
+
+/* ----- (min-width: 900px) ------ */
+
+@media (min-width:900px){
+    section {
+        margin: 4em 0;
+    }
+}
+
+
+/************ works ************/
+
+/* （メインビジュアルの下部の波） */
+.works::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 12%;
+    display: inline-block;
+    background-image: url(../images/wave2.png);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 11.875%;
+    top: 63%;
+    left: 0;
+}
+.works ul {
+    margin-top: 2.5em;
+    padding: 0 1.5em;
+}
+.works-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.ex1 .works-item:first-child {
+    margin-bottom: 2.5em;
+}
+.works ul img {
+    position: relative;
+    width: 100%;
+    border-radius: 3%;
+}
+.thumbn-hover {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 99%;
+    transition: all .2s;
+    color: white;
+    background-color: black;
+    border-radius: 3%;
+    opacity: 0;
+}
+.thumbn-hover p {
+    display: block;
+    margin-top: 28%;
+    margin-left: 2%;
+    text-align: center;
+    letter-spacing: 0.3rem;
+    font-size: 22px;
+}
+.thumbn-hover:hover {
+    opacity: 0.7;
+}
+
+
+/* ----- (min-width: 900px) ------ */
+
+@media (min-width:900px) {
+
+    /* （メインビジュアルの下部の波） */
+    .works::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 15%;
+        display: inline-block;
+        background-image: url(../images/wave2.png);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 11.875%;
+        top: 83%;
+        left: 0;
+    }
+    .works .section-title {
+        margin-top: 1em;
+    }
+    .works ul{
+        padding: 0;
+        display: flex;
+        justify-content: left;
+    }
+    .works-item {
+        max-width: 400px;
+        margin: 0;
+    }
+    .ex1 .works-item:first-child {
+        margin-right: 2em;
+        margin-bottom: 0em;
+    }
+}
+
+/* ----- (min-width: 1100px) ------ */
+
+@media (min-width:1100px) {
+
+    /* （メインビジュアルの下部の波） */
+    .works::before {
+        position: absolute;
+        content: "";
+        width: 115%;
+        height: 18%;
+        display: inline-block;
+        background-image: url(../images/wave2.png);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 11.875%;
+        top: 98%;
+        left: -15%;
+    }
+}
+/************ /works ************/
+
+
+
+
+/************ profile ************/
+
+/* ----------自己紹介 */
+
+.name {
+    margin-top: 2em;
+    letter-spacing: 0.15em;
+    font-size: 26px;
+}
+.name span {
+    margin-left: 2em;
+    font-size: 15px;
+}
+.about {
+    margin-top: 1.5em;
+    padding: 2.5em 1em;
+    background-color: #f2f8fc;
+}
+.about p:nth-child(n+2) {
+    margin-top: 1em;
+}
+
+@media (min-width:900px) {
+    .about {
+        margin-top: 2.5em;
+        padding: 2.5em 2em;
+    }
+}
+
+/* ----------///自己紹介 */
+
+
+
+/* ----------経歴（career） */
+
+/* 各タイトル設定 */
+.profile-title {
+    padding: 0.3em 1em 0.3em 1.1em;
+    margin-bottom: 0.2rem;
+    border-left: 0.5em solid rgb(201, 255, 237);
+    font-weight: bold;
+    font-size: 20px;
+}
+.profile-box02 {
+    margin-top: 3em;
+}
+.carrer-flow {
+    margin-top: 2.5em;
+}
+.c-box:nth-child(n+2) {
+    margin-top: 2em;
+}
+.year {
+    display: none;
+}
+.c-year {
+    font-size: 1.1em;
+}
+.c-title {
+    font-size: 1.1em;
+    font-weight:bold;
+    margin-bottom: 0.2em;
+}
+
+
+/* ----- (min-width: 900px) ------ */
+
+@media (min-width:900px) {
+    .profile-box02 {
+        margin-top: 6em;
+    }
+    .carrer-flow {
+        margin-top: 3em;
+        padding: 1.5em;
+        display: flex;
+    }
+    .year {
+        display: block;
+        width: 13%;
+        padding-top: 1.28em;
+        font-size: 1.2em;
+        border-right: 0.1em solid #c7c7c7;
+    }
+    .year p:nth-child(2) {
+        margin-top: 5.15em;
+    }
+    .year p:nth-child(3) {
+        margin-top: 5.25em;
+    }
+    .career {
+        width: 85%;
+        padding-top: 1.5em;
+        padding-left: 2.4em;
+        padding-bottom: 1.5em;
+    }
+    .c-box {
+        position: relative;
+    }
+    .c-box:before {
+        position: absolute;
+        content: "\025c6";
+        left: -2.93em;
+        color: aquamarine;
+    }
+    .c-box:nth-child(n+2) {
+        margin-top: 3em;
+    }
+    .c-year {
+        display: none;
+    }
+    .c-title {
+        font-size: 1.1em;
+    }
+    .c-text {
+        margin-top: 0.5em;
+    }
+}
+
+/* ----- (min-width: 1020px) ------ */
+
+@media (min-width:1020px) {
+    
+    .year p:nth-child(3) {
+        margin-top: 4em;
+    }
+
+}
+
+
+/* ----------///経歴（career） */
+
+
+
+/* ----------スキル（skill） */
+
+.profile-box03 {
+    margin-top: 6em;
+    padding-bottom: 3em;
+}
+.skill {
+    margin-top: 3em;
+}
+.skill-part li {
+    display: flex;
+}
+.skill-part li:not(:last-child){
+    margin-bottom: 3em;
+}
+.skill-part img {
+    max-width: 100px;
+}
+.skill-part .s-text {
+    margin: auto 0;
+    padding-left: 2.5em;
+}
+
+/* ----- (min-width: 900px) ------ */
+
+@media (min-width:900px) {
+    .profile-box03 {
+        padding-bottom: 5em;
+    }
+    .skill {
+        margin-top: 3.5em;
+    }
+    .skill-part {
+        display: flex;        
+    }
+    .skill-part li {
+        display: block;
+        flex: 1;
+    }
+    .skill-part li:not(:last-child){
+        margin-right: 2.5em;
+        margin-bottom: 0;
+    }
+    .skill-part img {
+        display: block;
+        margin: 0 auto;  
+        max-width: 150px;      
+    }
+    .skill-part .s-text  {
+        margin-top: 2.5em;
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+}
+
+/* ----------///スキル（skill） */
+
+/************ ////profile ************/
+
+/* ===============  ////main ============= */
+
+
+
+
+
+/* ===============  footer ============= */
+
+footer {
+    position: relative;
+    padding: 9.5em 3em 3em;
+    font-family: 'dosis', sans-serif;
+    color: white;
+    background: linear-gradient(rgba(0, 165, 137, 0.5), rgba(0, 165, 137, 0.5)),
+    url(../images/footer\ \(2\).jpg);
+    background-size: cover;
+}
+/* （フッターの波） */
+footer::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 13%;
+    display: inline-block;
+    background-image: url(../images/wave2.png);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 11.875%;
+    top:  -9%;
+    left: 0;
+}
+footer a:hover {
+    opacity: 0.7;
+}
+.footer-inner {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+/* フッターナビ */
+.footer-nav a {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.footer-nav li:not(:first-child) {
+    margin-top: 1.5em;
+}
+.works-link div {
+    color: rgb(238, 238, 238);
+}
+.works-link p {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+    margin-left: 0.8em;
+    font-size: 19px;
+}
+.works-link a {
+    margin-left: 2em;
+    font-size: 14px;
+    font-weight: lighter;
+    color: rgb(238, 238, 238);
+}
+
+/* ＠著作権 */
+.copy-right {
+    margin-top: 5em;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+
+/* ----- (min-width: 750px) ------ */
+
+@media (min-width:750px) {
+    /* （フッターの波） */
+    footer::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 12%;
+        display: inline-block;
+        background-image: url(../images/wave2.png);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 11.875%;
+        top:  -19%;
+        left: 0;
+    }
+    .footer-nav {
+        display: flex;
+        justify-content: space-around;
+    }
+    .footer-nav li:not(:first-child) {
+        margin-top: 0;
+    }
+    .footer-nav li:nth-child(2) {
+        margin-left: 4em;
+    }
+    .works-link p {
+        margin-top: 0.3em;
+        margin-left: 1em;
+    }
+    .works-link a {
+        margin-left: 2.5em;
+    }
+}
+
+/* ----- (min-width: 1100px) ------ */
+
+@media (min-width:1100px) {
+    footer {
+        padding: 10em 3em 3em;
+    }
+    /* （フッターの波） */
+    footer::before {
+        position: absolute;
+        content: "";
+        width: 115%;
+        height: 15%;
+        display: inline-block;
+        background-image: url(../images/wave2.png);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 11.875%;
+        top: -25%;
+        left: -15%;
+    }
+}
+
+
+/* ----- (min-width: 1970px) ------ */
+
+@media (min-width:1550px) {
+    footer::before {
+        position: absolute;
+        content: "";
+        width: 115%;
+        height: 15%;
+        display: inline-block;
+        background-image: url(../images/wave2.png);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 11.875%;
+        top: -45%;
+        left: -15%;
+    }
+}
+
+/* =============== /////footer ============= */
+
+
+
+
+/*********************************　
+
+           作品(works)紹介ページ
+
+　*********************************/
+
+
+/* -------------worksページ共通設定 */
+.w-main {
+    max-width: 800px;
+    margin: 8em auto;
+}
+
+/* 紹介ページ・各タイトル設定 */
+.head-border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'dosis', sans-serif;
+    letter-spacing: 0.1em;
+}
+.head-border:before,
+.head-border:after {
+    content: "";
+    width: 1em;
+    height: 1px;
+    background-color: #666;
+}
+.head-border:before {
+    margin-right: 1em;
+}
+.head-border:after {
+    margin-left: 1em;
+}
+
+/* 題文 */
+.intro-title {
+    margin-top: 2.5em;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 23px;
+    text-align: center;
+}
+
+/* 画像・スクショ */
+.image-top{
+    margin-top: 3em;
+    text-align: center;
+}
+.image-top img {
+    max-width: 100%;
+}
+
+/* 作品紹介 */
+.w-content {
+    margin-top: 2.5em;
+}
+.w-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3em;
+}
+.w-title {
+    width: 20%;
+    opacity: 0.8;
+    word-break: keep-all;
+}
+.w-text {
+    width: 70%;
+}
+.w-text .w-block01 {
+    display: block;
+    margin: 0.4em 0;
+}
+.w-text .w-block02 {
+    display: block;
+    margin-top: 1.5em ;
+    margin-bottom: 0.4em;
+}
+.PC_br {
+    display: none;
+}
+.w-link a {
+    color: rgb(103, 174, 255);
+}
+.w-link a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* ----------美容室サイトロゴ紹介ページ設定（hairsalon-logo） */
+
+
+/* 画像・スクショ */
+
+.logo-gallary {
+    max-width: 680px;
+    margin: 3em auto 0;
+    padding-bottom: 1em;
+    text-align: center;
+}
+.logo-gallary img {
+    max-width: 100%;
+}
+.bigimg {
+    display: flex;
+}
+.gallary {
+    display: flex;
+    margin-top: 15px;
+    margin-right: 9px;
+}
+.gallary ul{
+    display: flex;
+}
+.gallary li {
+    display: flex;
+    flex: 1 1 auto;
+    padding: 2px;
+}
+.gallary li:nth-child(n+2) {
+    margin-left: 9px;
+}
+.gallary li:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+.gallary img {
+    cursor: pointer;
+}
+.logo-gallary p {
+    margin-top: 1em;
+    font-size: 14px;
+}
+.thumb.active {
+    border: 2px solid red;
+}
+/* （ラジオボタン消去） */
+input[type=radio] {
+    display: none;
+}
+input[type=radio]:checked + label img {
+    box-shadow: 0 0 0 2px #594236;
+}
+.unuse-logo {
+    max-width: 200px;
+    margin-bottom: 0.5em;
+}
+
+/* ----- (min-width: 900px) ------ */
+
+@media (min-width:900px) {
+
+    /* ----------worksページ共通設定 */
+    
+    .image-top img {
+        max-width: 700px;
+    }
+    .w-content {
+        margin-top: 5em;
+    }
+    .w-box {
+        margin-top: 2em;
+    }
+    .w-title {
+        width: 15%;
+    }
+    .w-text {
+        width: 75%;
+    }
+    .PC_br {
+        display: block;
+    }
+
+    /* ----------美容室サイトロゴ紹介ページ設定（hairsalon-logo） */
+
+    .gallary {
+        margin-top: 22px;
+    }
+    .logo-gallary p {
+        margin-top: 2em;
+    }
+    .unuse-logo {
+        max-width: 300px;
+        margin-bottom: 0.5em;
+    }
+}
+
+
