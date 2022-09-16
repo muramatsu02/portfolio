@@ -232,14 +232,15 @@ nav.header-nav01.active {
         background-color: rgba(255, 255, 255, 0.85);
     }
     .sub div {
-        width: 250px;
+        width: 265px;
         letter-spacing: 0.1em;
     }
-    .sub p {
+    .sub .works-category {
+        display: block;
         padding: 0.5em 0em 0.5em 2em;
         font-size: 19px;
     }
-    .sub a {
+    .sub .works-name {
         display: block;
         padding: 1em 0 1em 3em;
         font-size: 15px;
@@ -413,18 +414,18 @@ section {
     left: 0;
 }
 .works ul {
-    margin-top: 2.5em;
-    padding: 0 1.5em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:left;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding-top: 3em;
 }
 .works-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 480px;
-    margin: 0 auto;
-}
-.ex1 .works-item:first-child {
-    margin-bottom: 2.5em;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 2em;
 }
 .works ul img {
     position: relative;
@@ -456,6 +457,18 @@ section {
 }
 
 
+/* ----- (min-width: 580px) ------ */
+
+@media (min-width: 580px){
+    .works-item {
+        width: 48%;
+    }
+    .works-item:nth-child(odd) {
+        margin-right: 0.8em;
+    }
+}
+
+
 /* ----- (min-width: 900px) ------ */
 
 @media (min-width:900px) {
@@ -478,18 +491,11 @@ section {
     .works .section-title {
         margin-top: 1em;
     }
-    .works ul{
-        padding: 0;
-        display: flex;
-        justify-content: left;
-    }
     .works-item {
-        max-width: 400px;
-        margin: 0;
+        width: 31%;
     }
-    .ex1 .works-item:first-child {
-        margin-right: 2em;
-        margin-bottom: 0em;
+    .works-item  {
+        margin-right: 0.8em;
     }
 }
 
@@ -1019,6 +1025,139 @@ input[type=radio]:checked + label img {
     margin-bottom: 0.5em;
 }
 
+
+
+
+/* ----------オリジナルバナー紹介ページ設定（banner.html） */
+
+.w-content-banner {
+    margin-top: 5em;
+}
+.banner-page-title {
+    margin-top: 1.5em;
+}
+.banner-annotation {
+    text-align: center;
+    margin-top: 1em;
+    font-size: 14px;
+}
+.banner-gallary {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+.banner-gallary li {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 3em;
+}
+.banner-gallary a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    background-color: #000;
+    overflow: hidden;
+}
+.banner-gallary img {
+    width: 100%;
+    height: auto;
+    transition: .3s;
+    /* vertical-align: top;で、hover時に拡大する動作を付けたときにできる、謎の下の余白を消す */
+    vertical-align: top;
+}
+.banner-gallary img:hover {
+    opacity: 0.7;
+    transform: scale(1.1, 1.1);
+    cursor: pointer;
+}
+.banner-title {
+    padding: 0.4em 1.2em 0.4em 1.2em;
+    border-left: 0.5em solid rgb(0, 255, 170);
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+.banner-img {
+    margin: 0 auto;
+    margin-top: 3em;
+    padding-bottom: 1em;
+    max-width: 415px;
+}
+.banner-img img {
+    max-width: 100%;
+}
+.banner-size {
+    text-align: right;
+    font-size: 14px;
+}
+.font-bold {
+    font-weight: bold;
+} 
+.w-list li {
+    padding-bottom: 0.4em;
+}
+.design-point li {
+    position: relative;
+    padding-left: 1em;
+}
+.design-point li::before {
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    top: 0.5em;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 50%;
+    background-color: rgb(0, 255, 170);
+}
+.reflection li {
+    position: relative;
+    padding-left: 1em;
+}
+.reflection li::before {
+	position:absolute;
+	content:'';
+	top: 0.5em;
+	left: 0;
+	height:0;
+	width:0;
+	border-style: solid;
+	border-width: 6px 0 6px 9px;
+	border-color: transparent transparent transparent  rgb(0, 140, 255);
+}
+
+
+/* オリジナルバナー紹介ページ設定（banner.html）のみ適応 */
+
+/* ----- (min-width: 580px) ------ */
+
+@media (min-width: 580px){
+    .banner-gallary {
+        max-width: 580px;
+    }
+    .banner-gallary li {
+        width: 50%;
+        padding-bottom: 2em;
+    }
+    .banner-gallary li:nth-child(odd) {
+        padding-right: 0.8em;
+    }
+    .banner-gallary li:nth-child(even) {
+        padding-left: 0.8em;
+    }
+    .banner-size {
+        padding-right: 1em;
+    }
+}
+
+
+
 /* ----- (min-width: 900px) ------ */
 
 @media (min-width:900px) {
@@ -1044,6 +1183,7 @@ input[type=radio]:checked + label img {
         display: block;
     }
 
+
     /* ----------美容室サイトロゴ紹介ページ設定（hairsalon-logo） */
 
     .gallary {
@@ -1056,6 +1196,24 @@ input[type=radio]:checked + label img {
         max-width: 300px;
         margin-bottom: 0.5em;
     }
+
+
+    /* ----------オリジナルバナー紹介ページ設定（banner.html） */
+
+    .banner-gallary {
+        max-width: 890px;
+    }
+    .banner-gallary li {
+        width: 33%;
+        padding: 0 0.8em 1.6em;
+    }
+    .w-content-banner:not(:first-child) {
+        margin-top: 6em;
+    }
 }
+
+
+
+
 
 
